@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 amazon_fashion_clean_051624.parquet
 filtered_details_with_titles.csv
+output/product_image_links.json
