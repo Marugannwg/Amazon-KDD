@@ -161,3 +161,6 @@ cython_debug/
 amazon_fashion_clean_051624.parquet
 filtered_details_with_titles.csv
 output/product_image_links.json
+output/product_details_array.json
+output/test_images.json
+output/product_details.json
