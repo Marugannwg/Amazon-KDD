@@ -164,3 +164,5 @@ output/product_image_links.json
 output/product_details_array.json
 output/test_images.json
 output/product_details.json
+data/final_short_df.csv
+output/progress_record.json
