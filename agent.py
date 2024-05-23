@@ -26,7 +26,7 @@ class ShoppingAssistant():
         
         ##### configurations #####
         env = load_dotenv()
-        # self.HF_API_KEY = os.getenv("HF_API_KEY")
+        self.HF_API_KEY = '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'
         if not config:
             # TODO: make sure the query embedding model matches doc embedding model
             config = {
@@ -42,7 +42,7 @@ class ShoppingAssistant():
         
         ###### search_product tool #####
         # pinecone
-        self.pinecone = Pinecone()
+        self.pinecone = Pinecone(api_key="92fd371f-5b1e-415b-bcb4-9a9922514120")
         self.image_vector_store = self.pinecone.Index(self.config["image_vector_store_name"])
         self.text_vector_store = self.pinecone.Index(self.config["text_vector_store_name"])
         
@@ -112,12 +112,20 @@ class ShoppingAssistant():
         ###### LLM agent ######
         # TODO: better system prompt
         sys_prompt = """
-        You are an online shopping assistant. Your job is to help users find products, provide product details, and answer questions.
-        Use the search_product tool to find relevant products in the database.
-        Markdown is enabled for displaying product images.
-        Below is the user's information. Tailor your assistance to best suit their needs.
-        **User Information:**
+        You are an online shopping assistant. Your job is to choose *ONE* the items that matches best with user's need.
+
+        State clearly to user the product name in a separated new line,
+        provide a short reasoning on why you choose this item and why you didn't choose the others.
         """
+        
+    
+        # You are an online shopping assistant. Your job is to help users find products, provide product details, and answer questions.
+        # Use the search_product tool to find relevant products in the database.
+        # Markdown is enabled for displaying product images.
+        # Below is the user's information. Tailor your assistance to best suit their needs.
+        # **User Information:**
+        
+  
         
         # TODO: pass in user info dynamically
         user_info = """
@@ -129,7 +137,7 @@ class ShoppingAssistant():
         Occupation: Sociology Professor
         """
         
-        sys_prompt += user_info
+        #sys_prompt += user_info
 
         prompt = ChatPromptTemplate.from_messages(
             [
